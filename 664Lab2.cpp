@@ -25,7 +25,7 @@ vector<int> setStart(int width, int height);
 void showRoute();
 void showOption();
 bool isAvailable(vector<int> slot, int width, int height);
-
+char get_moves(int x, int y)
 
 int main()
 {
@@ -48,6 +48,30 @@ int main()
 		showRoute();
 		showOption();
 	} while (gameboard[currentLocation[0]][currentLocation[1]].find("G") == string::npos);
+}
+
+char get_moves(int x, int y)
+{
+  //possible moves: goes side ways or up or down.
+  //Chech is not market as V and then store them
+  //[0,0][0,1][0,2]
+  //[1,0][1,1][1,2]
+  //[2,0][2,1][2,2]
+  //Store Bit-Wise in Clockwise order
+  //Access in anti-clockwise order with Modulus operation. and counter
+
+  //x-1,y #0
+  char a[];
+  int x = 0;
+  (AIboard[x-1][y]!='V')? a[x] = 1: a[x] = 0; x++;
+  //x,y+1 #1
+  (AIboard[x][y+1]!='V')? a[x] = 1: a[x] = 0; x++;
+  //x+1,y #2
+  (AIboard[x+1][y]!='V')? a[x] = 1: a[x] = 0; x++;
+  //x,y-1 #4
+  (AIboard[x][y-1]!='V')? a[x] = 1: a[x] = 0;
+  return a;
+
 }
 
 //HELPER:display route
